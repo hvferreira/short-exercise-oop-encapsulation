@@ -17,6 +17,9 @@ public class WeatherReporter {
     private final String TOOCOLD="It's too cold 🥶!";
     private final String NORMAL="Ahhh...it's just right 😊!";
 
+    private final int UPPER =30;
+    private final int LOWER =10;
+
 
     public WeatherReporter(String location, double temperature) {
         this.location = location;
@@ -25,8 +28,8 @@ public class WeatherReporter {
 
     public String getTemperatureFahrenheit() {
 
-        double newTemp = ( NINE/ FIVE) * temperature + NUM32;
-        return MessageFormat.format("I am in {0} and it is {1}. {2}. The temperature in Fahrenheit is {3}.", location, getLocationEmoji(), getTemperaturePhrase(), newTemp);
+
+        return MessageFormat.format("I am in {0} and it is {1}. {2}. The temperature in Fahrenheit is {3}.", location, getLocationEmoji(), getTemperaturePhrase(), (( NINE/ FIVE) * temperature + NUM32));
 
     }
 
@@ -42,9 +45,9 @@ public class WeatherReporter {
     }
 
     public String getTemperaturePhrase() {
-        if (temperature > 30)
+        if (temperature > UPPER)
         {return TOOHOT;}
-        else if (temperature < 10) {
+        else if (temperature < LOWER) {
             return TOOCOLD;
         }
         return NORMAL;
